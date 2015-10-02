@@ -1,6 +1,8 @@
 $(function(){
-	$('.save-btn').click(save());
-	$('.load-btn').click(load());
+	$('.save-btn').click(save);
+	$('.load-btn').click(load);
+	alert(0);
+	debugger;
 	console.log('Hello World');
 });
 

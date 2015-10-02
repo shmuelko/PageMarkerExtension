@@ -10,7 +10,8 @@ var save = function() {
 	
 	chrome.tabs.executeScript({
 		code: 'console.log(\'Hello\');' +
-				'localStorage.scrollY = window.pageYOffset;'
+			'localStorage.setItem(window.location.href,window.pageYOffset);'
+				
 	});
 	
 	
@@ -19,7 +20,7 @@ var save = function() {
  
  var load = function() { 
 	 chrome.tabs.executeScript({
-		code: 'window.scroll(0, localStorage.scrollY);' +
+		code: 'window.scroll(0, localStorage.getItem(window.location.href));' + 
 				'console.log(\'Boo\');'
 	});
 	

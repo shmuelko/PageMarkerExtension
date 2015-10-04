@@ -10,7 +10,8 @@ var save = function() {
 	
 	chrome.tabs.executeScript({
 		code: 'console.log(\'Hello\');' +
-			//'$(\'.page-marker\').remove()'+
+			'var prev = document.getElementById(\'page-marker\');'+
+			'if(prev != null){prev.remove();}'+
 			'localStorage.setItem(window.location.href,window.pageYOffset);'+
 			
 			'var div = document.createElement(\"div\");'+
@@ -21,7 +22,7 @@ var save = function() {
 			'div.style.position = \"fixed\";'+
 			'div.style.marginLeft = (window.innerWidth - 20 )+\"px\";'+ 
 			'div.style.top = (10 + (window.pageYOffset/ window.innerHeight * 100)) +\"px\";'+
-			'div.className = \"page-marker\";'+ 
+			'div.id = \"page-marker\";'+ 
 			
 			'console.log(\'window.innerHeight: \'+window.innerHeight);' +
 			'console.log(\'window.pageYOffset: \'+window.pageYOffset);' +

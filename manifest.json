@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Hello World",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Page Marker",
+  "description": "This extension can mark your page position and then let you open the page on the saved position.",
   "version": "1.0",
 
   "browser_action": {

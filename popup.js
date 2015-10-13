@@ -1,36 +1,35 @@
 $(function(){
 	$('.save-btn').click(save);
 	$('.load-btn').click(load);
-	//alert(0);
-	//debugger;
-	console.log('Hello World');
+	//paint();
 });
+
+var paint = function() {
+	chrome.tabs.executeScript({
+		code:'var prev = document.getElementById(\'page-marker\');'+
+			'if(prev != null){prev.remove();}'+ 
+			
+			'var div = document.createElement(\"div\");'+
+			'div.style.width = (window.innerWidth * 2/100) +\"px\";'+ 
+			'var pointerHeight = ((window.innerHeight / (document.body.scrollHeight / window.innerHeight)) - 9);'+
+			'div.style.height = (pointerHeight >= 15.5 ? pointerHeight: 15.5) +\"px\";'+			
+			'div.style.background = \"green\";'+	
+			
+			'div.style.position = \"fixed\";'+
+			'div.style.marginLeft = (window.innerWidth - 18.3 )+\"px\";'+   
+			'div.style.top = window.pageYOffset / window.innerHeight * pointerHeight + 21 +\"px\";'+
+			'div.id = \"page-marker\";'+ 
+			'document.body.appendChild(div);'
+	});
+};
 
 var save = function() {
 	
 	chrome.tabs.executeScript({
-		code: 'console.log(\'Hello\');' +
-			'var prev = document.getElementById(\'page-marker\');'+
-			'if(prev != null){prev.remove();}'+
-			'localStorage.setItem(window.location.href,window.pageYOffset);'+
-			
-			'var div = document.createElement(\"div\");'+
-			'div.style.width = (window.innerWidth * 2/100) +\"px\";'+
-			'div.style.height = (window.innerHeight * 2/100) +\"px\";'+
-			'div.style.background = \"green\";'+	
-			
-			'div.style.position = \"fixed\";'+
-			'div.style.marginLeft = (window.innerWidth - 20 )+\"px\";'+ 
-			'div.style.top = (10 + (window.pageYOffset/ window.innerHeight * 100)) +\"px\";'+
-			'div.id = \"page-marker\";'+ 
-			
-			'console.log(\'window.innerHeight: \'+window.innerHeight);' +
-			'console.log(\'window.pageYOffset: \'+window.pageYOffset);' +
-			'console.log(\'mark place: \'+window.pageYOffset / window.innerHeight * 100);' +
-
-			'document.body.appendChild(div);'
+		code:'localStorage.setItem(window.location.href,window.pageYOffset);'
 				
 	});
+	paint();
 	
 	
 	
@@ -38,8 +37,7 @@ var save = function() {
  
  var load = function() { 
 	 chrome.tabs.executeScript({
-		code: 'window.scroll(0, localStorage.getItem(window.location.href));' + 
-				'console.log(\'Boo\');'
+		code: 'window.scroll(0, localStorage.getItem(window.location.href));'
 	});
 	
 	

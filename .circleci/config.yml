@@ -19,7 +19,6 @@ jobs:
   flow:
     executor: my-executor
     steps:
-      - run: npm run jest
       - run: wget "https://github.com/PractiTest/practitest-firecracker/releases/download/v.1.1.5/practitest-firecracker-standalone.jar"
       - run: mkdir -p workspace
       - run: echo "Hello, world!" > workspace/echo-output

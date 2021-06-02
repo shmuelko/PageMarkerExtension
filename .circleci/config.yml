@@ -5,6 +5,7 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
   test-orb: firecracker/test-orb@dev:0eab24e
+  jest: blimmer/jest@0.2.1
 # Orchestrate or schedule a set of jobs
 executors:
   my-executor:
@@ -14,12 +15,14 @@ executors:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     working_directory: /tmp
-
+    
+test:
+    jobs:
+      - jest/test
 jobs:
   flow:
     executor: my-executor
     steps:
-      - run: npm i jest --save-dev
       - run: wget "https://github.com/PractiTest/practitest-firecracker/releases/download/v.1.1.5/practitest-firecracker-standalone.jar"
       - run: mkdir -p workspace
       - run: echo "Hello, world!" > workspace/echo-output

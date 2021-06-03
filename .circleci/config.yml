@@ -20,6 +20,9 @@ jobs:
   flow:
     executor: my-executor
     steps:
+      - run:
+          name: Run Tests
+          command: npm test
       - run: ls
       - run: wget "https://github.com/PractiTest/practitest-firecracker/releases/download/v.1.1.5/practitest-firecracker-standalone.jar"
       - run: ls

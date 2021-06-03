@@ -56,7 +56,9 @@ workflows:
   btd:
     jobs:
       - jest/test
-      - flow
+      - flow:
+          requires:
+            - jest/test
       - downstream:
           requires:
             - flow

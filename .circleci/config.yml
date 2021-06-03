@@ -22,8 +22,10 @@ jobs:
     steps:
       - run: ls
       - run: wget "https://github.com/PractiTest/practitest-firecracker/releases/download/v.1.1.5/practitest-firecracker-standalone.jar"
+      - run: ls
       - run: mkdir -p workspace
       - run: echo "Hello, world!" > workspace/echo-output
+      - run: ls
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:

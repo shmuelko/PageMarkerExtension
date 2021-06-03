@@ -52,12 +52,10 @@ jobs:
 
 workflows:
   version: 2
-    
-  test:
-    jobs:
-      - jest/test
+
   btd:
     jobs:
+      - jest/test
       - flow
       - downstream:
           requires:
